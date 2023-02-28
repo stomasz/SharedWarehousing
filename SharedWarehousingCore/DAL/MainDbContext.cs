@@ -29,18 +29,10 @@ public class MainDbContext : IdentityDbContext<AppUser, AppRole, int,
         base.OnModelCreating(builder);
 
         builder.ApplyConfiguration(new RecordHistoryMap());
+        builder.ApplyConfiguration(new AppRoleMap());
     }
 
-    public static void Seed(DbContext context)
-    {
-        var role = new AppRole { Name = "User" };
 
-        if (!context.Set<AppRole>().Any(p => p.Name == role.Name))
-        {
-            context.Set<AppRole>().Add(role);
-            context.SaveChanges();
-        }
-    }
     public async Task<int> SaveChangesWithLogsAsync(int userId,
         CancellationToken cancellationToken = new CancellationToken())
     {
