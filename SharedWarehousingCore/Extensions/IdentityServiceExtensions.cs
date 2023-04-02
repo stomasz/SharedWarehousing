@@ -22,6 +22,7 @@ namespace SharedWarehousingCore.Extensions
                 .AddRoleManager<RoleManager<AppRole>>()
                 .AddSignInManager<SignInManager<AppUser>>()
                 .AddRoleValidator<RoleValidator<AppRole>>()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<MainDbContext>();
             
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
